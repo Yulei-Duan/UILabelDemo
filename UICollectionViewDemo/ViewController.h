@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIActionSheetDelegate>
+@property (strong, nonatomic) IBOutlet UIImageView *headImage;
+
 
 
 @end

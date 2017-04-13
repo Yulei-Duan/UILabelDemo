@@ -7,16 +7,53 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "ONE_ViewController.h"
+#import "TWO_ViewController.h"
+#import "THREE_ViewController.h"
 
 @interface AppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate{
+    UITabBarController *tabbar;
+    UINavigationController * navigationController;
+//    Custom_tabbar *customTabbar;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    tabbar = [[UITabBarController alloc] init];
+    
+    
+    ViewController *vc = [[ViewController alloc] init];
+    ONE_ViewController *one_vc = [[ONE_ViewController alloc] init];
+    TWO_ViewController *two_vc = [[TWO_ViewController alloc] init];
+    THREE_ViewController *thr_vc = [[THREE_ViewController alloc] init];
+    
+    UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:vc];
+    UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:one_vc];
+    UINavigationController *nav3 = [[UINavigationController alloc] initWithRootViewController:two_vc];
+    UINavigationController *nav4 = [[UINavigationController alloc] initWithRootViewController:thr_vc];
+    tabbar.viewControllers = @[nav1,nav2,nav3,nav4];
+//    [self customTabbar];
+    NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:@"TabIndex"];
+    tabbar.selectedIndex = index;
+    tabbar.selectedIndex = 2;
+//    [customTabbar setSelectIndex:index];
+    
+    
+//    navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+//    self.window.rootViewController = navigationController;
+    
+    
+    self.window.rootViewController = tabbar;
+    self.window.backgroundColor = [UIColor colorWithWhite:1 alpha:0.95];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
